@@ -9,7 +9,7 @@ export default function ChatLayout({
     return (
         <div className="flex h-screen w-full overflow-hidden bg-background">
             <Sidebar />
-            <main className="flex-1 overflow-y-auto">
+            <main className="flex-1 overflow-y-auto text-white">
                 {children}
             </main>
         </div>

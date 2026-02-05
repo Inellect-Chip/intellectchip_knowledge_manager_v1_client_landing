@@ -2,7 +2,6 @@
 
 :root {
   --background: #ffffff;
-  --chat-background: #262624;
 
   --foreground: #171717;
 
@@ -56,4 +55,32 @@ body {
 
 .container {
   @apply max-w-[1400px] w-10/12 mx-auto;
+}
+
+/* Custom Scrollbar - Nearly Invisible */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.05); /* Very subtle */
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--hover-color); /* Shows up on hover */
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.05) transparent;
 }

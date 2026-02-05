@@ -23,9 +23,16 @@ const Sidebar = () => {
 
     const navItems = [
         // { name: 'Dashboard', icon: LayoutDashboard, href: '/dashboard' },
-        { name: 'Chat', icon: MessageSquare, href: '/Chat' },
+        { name: 'New Chat', icon: MessageSquare, href: '/Chat' },
         { name: 'Knowledge', icon: BrainCircuit, href: '/knowledge' },
     ];
+
+    // Mock Chat History (20 items)
+    const mockChatHistory = Array.from({ length: 20 }, (_, i) => ({
+        id: i + 1,
+        title: `Research Analysis #${i + 1}`,
+        time: '2 hours ago'
+    }));
 
     return (
         <aside
@@ -40,8 +47,8 @@ const Sidebar = () => {
                 {isCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
             </button>
 
-            {/* Brand / Logo */}
-            <div className={`p-6 flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'}`}>
+            {/* STATIC TOP: Brand / Logo */}
+            <div className={`p-6 pb-2 flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'}`}>
                 <div className="h-8 w-8 rounded-lg flex items-center justify-center text-white font-bold">
                     <Image src="/logo/intellectchip.png" alt="Logo" width={40} height={40} />
                 </div>
@@ -52,8 +59,8 @@ const Sidebar = () => {
                 )}
             </div>
 
-            {/* Navigation Links */}
-            <nav className="flex-1 px-3 space-y-1 py-4">
+            {/* STATIC TOP: Navigation Links */}
+            <nav className="px-3 space-y-1 py-4 border-b border-secondary/5">
                 {navItems.map((item) => (
                     <Link
                         key={item.name}
@@ -74,14 +81,45 @@ const Sidebar = () => {
                 ))}
             </nav>
 
-            {/* User Section (Bottom) */}
-            <div className="p-4 border-t border-secondary/10 relative">
+            {/* SCROLLABLE MIDDLE: Chat History */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar px-3 py-4 space-y-1">
+                {!isCollapsed && (
+                    <div className="px-3 mb-2">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-secondary-foreground/50">Recent Chats</span>
+                    </div>
+                )}
+                {mockChatHistory.map((chat) => (
+                    <button
+                        key={chat.id}
+                        className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group hover:bg-hover/30 cursor-pointer ${isCollapsed ? 'justify-center' : ''
+                            }`}
+                    >
+                        <MessageSquare
+                            size={18}
+                            className="text-secondary-foreground group-hover:text-hover shrink-0"
+                        />
+                        {!isCollapsed && (
+                            <div className="flex flex-col items-start overflow-hidden">
+                                <span className="text-sm font-medium text-secondary-foreground group-hover:text-hover truncate w-full text-left">
+                                    {chat.title}
+                                </span>
+                                <span className="text-[10px] text-secondary-foreground/40 leading-none mt-1">
+                                    {chat.time}
+                                </span>
+                            </div>
+                        )}
+                    </button>
+                ))}
+            </div>
+
+            {/* STATIC BOTTOM: User Section */}
+            <div className="p-4 border-t border-secondary/10 relative bg-white dark:bg-zinc-950">
                 <button
                     onClick={() => setShowUserMenu(!showUserMenu)}
                     className={`w-full flex items-center rounded-xl p-2 hover:bg-secondary/10 transition-colors group ${isCollapsed ? 'justify-center' : 'gap-3'
                         }`}
                 >
-                    <div className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-transparent group-hover:ring-primary transition-all">
+                    <div className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-transparent group-hover:ring-hover transition-all shrink-0">
                         {user?.imageUrl ? (
                             <Image
                                 src={user.imageUrl}
@@ -98,7 +136,7 @@ const Sidebar = () => {
 
                     {!isCollapsed && (
                         <div className="flex flex-col text-left overflow-hidden">
-                            <span className="text-xs text-secondary-foreground leading-tight">Welcome,</span>
+                            <span className="text-xs text-secondary-foreground leading-tight">Welcome</span>
                             <span className="text-sm font-semibold text-foreground truncate">
                                 {user?.firstName && user?.lastName
                                     ? `${user.firstName} ${user.lastName}`
@@ -118,9 +156,9 @@ const Sidebar = () => {
                                 openUserProfile();
                                 setShowUserMenu(false);
                             }}
-                            className="w-full flex items-center gap-3 p-3 text-sm font-medium text-secondary-foreground hover:bg-secondary/10 hover:text-primary rounded-xl transition-colors"
+                            className="w-full flex items-center gap-3 p-3 text-sm font-medium text-secondary-foreground hover:bg-secondary/10 hover:text-hover rounded-xl transition-colors"
                         >
-                            <UserIcon size={18} />
+                            <Settings size={18} />
                             Account Settings
                         </button>
                         <SignOutButton>
