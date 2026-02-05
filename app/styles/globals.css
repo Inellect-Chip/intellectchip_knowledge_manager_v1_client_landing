@@ -12,6 +12,8 @@
   --secondary-color: #eff4ff;
   --secondary-foreground-color: #6d7a98;
 
+  --hover-color: #d4e2ff;
+
   --mute-foreground-color: rgb(223, 223, 223);
 }
 
@@ -26,6 +28,8 @@
 
   --color-secondary: var(--secondary-color);
   --color-secondary-foreground: var(--secondary-foreground-color);
+
+  --color-hover: var(--hover-color);
 
   --color-mute-foreground: var(--mute-foreground-color);
 }
