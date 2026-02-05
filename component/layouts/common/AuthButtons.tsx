@@ -42,7 +42,7 @@ const AuthButtons = ({ className = "" }) => {
                 <div className="flex items-center gap-4">
                     {/* Chat Link */}
                     <Link
-                        href="/chat"
+                        href="/Chat"
                         className="flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors px-4 py-2 border border-primary/20 rounded-full bg-primary/5 hover:bg-primary/10"
                     >
                         <MessageSquare size={16} />
