@@ -94,17 +94,10 @@ const Sidebar = () => {
                         className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group hover:bg-hover/30 cursor-pointer ${isCollapsed ? 'justify-center' : ''
                             }`}
                     >
-                        <MessageSquare
-                            size={18}
-                            className="text-secondary-foreground group-hover:text-hover shrink-0"
-                        />
                         {!isCollapsed && (
                             <div className="flex flex-col items-start overflow-hidden">
                                 <span className="text-sm font-medium text-secondary-foreground group-hover:text-hover truncate w-full text-left">
                                     {chat.title}
-                                </span>
-                                <span className="text-[10px] text-secondary-foreground/40 leading-none mt-1">
-                                    {chat.time}
                                 </span>
                             </div>
                         )}
