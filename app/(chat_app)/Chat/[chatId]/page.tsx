@@ -1,22 +1,44 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import { Plus, ArrowRight } from 'lucide-react';
+import AddResourceModal from '@/component/features/chat/AddResourceModal';
+import Toast, { ToastProps } from '@/component/ui/Toast';
 
 const ChatPage = () => {
     const params = useParams();
     const { user } = useUser();
-    // chatId is available if needed for future logic
-    // const chatId = params.chatId as string;
+
+    // State
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [toasts, setToasts] = useState<ToastProps[]>([]);
+
+    const addToast = (message: string, type: 'success' | 'error' = 'success') => {
+        const id = Math.random().toString(36).substr(2, 9);
+        setToasts(prev => [...prev, { id, message, type, onDismiss: dismissToast }]);
+    };
+
+    const dismissToast = (id: string) => {
+        setToasts(prev => prev.filter(t => t.id !== id));
+    };
+
+    const handleAddResource = (url: string) => {
+        console.log("Adding resource:", url);
+        // Here you would typically call your API
+        addToast("Resource added successfully! Processing started.", "success");
+    };
 
     return (
         <div className="relative h-full flex flex-col items-center justify-center p-8 text-center max-w-4xl mx-auto">
             {/* Top Right: Add Resource Button */}
             <div className="absolute top-8 right-8">
-                <button className="flex items-center gap-2 px-4 py-2 bg-transparent border border-secondary/20 hover:bg-secondary/10 rounded-lg text-sm font-medium transition-colors cursor-pointer">
+                <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="flex items-center gap-2 px-4 py-2 bg-transparent border border-secondary/20 hover:bg-secondary/10 rounded-lg text-sm font-medium transition-colors cursor-pointer"
+                >
                     <Plus size={16} />
                     Add Resource
                 </button>
@@ -56,6 +78,19 @@ const ChatPage = () => {
                         </button>
                     </div>
                 </div>
+            </div>
+
+            {/* Modals & Toasts */}
+            <AddResourceModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onAdd={handleAddResource}
+            />
+
+            <div className="fixed bottom-8 right-8 flex flex-col gap-2 z-50">
+                {toasts.map(toast => (
+                    <Toast key={toast.id} {...toast} />
+                ))}
             </div>
         </div>
     );
