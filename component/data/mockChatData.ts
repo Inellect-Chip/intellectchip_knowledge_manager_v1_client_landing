@@ -1,0 +1,22 @@
+export const mockChatHistory = [
+    { id: '1234567890123456', title: 'AI Ethics Research', time: '2 hours ago' },
+    { id: '9876543210987654', title: 'Neural Network Optimization', time: '5 hours ago' },
+    { id: '4567890123456789', title: 'Data Privacy Analysis', time: '1 day ago' },
+    { id: '3210987654321098', title: 'Quantum Computing Basics', time: '2 days ago' },
+    { id: '7890123456789012', title: 'React Performance Tuning', time: '3 days ago' },
+    { id: '6543210987654321', title: 'Next.js 15 Features', time: '4 days ago' },
+    { id: '0123456789012345', title: 'Tailwind CSS Best Practices', time: '5 days ago' },
+    { id: '8901234567890123', title: 'TypeScript Generics Guide', time: '6 days ago' },
+    { id: '2345678901234567', title: 'Microservices Architecture', time: '1 week ago' },
+    { id: '5678901234567890', title: 'GraphQL vs REST', time: '1 week ago' },
+    { id: '3456789012345678', title: 'Docker Containerization', time: '1 week ago' },
+    { id: '9012345678901234', title: 'Kubernetes Orchestration', time: '2 weeks ago' },
+    { id: '6789012345678901', title: 'AWS Lambda Functions', time: '2 weeks ago' },
+    { id: '1122334455667788', title: 'Google Cloud Platform', time: '2 weeks ago' },
+    { id: '9988776655443322', title: 'Azure DevOps Pipelines', time: '3 weeks ago' },
+    { id: '1029384756102938', title: 'CI/CD Workflows', time: '3 weeks ago' },
+    { id: '5647382910564738', title: 'Agile Methodologies', time: '1 month ago' },
+    { id: '1111222233334444', title: 'Scrum Master Certification', time: '1 month ago' },
+    { id: '5555666677778888', title: 'Product Management 101', time: '1 month ago' },
+    { id: '9999000011112222', title: 'User Experience Design', time: '2 months ago' }
+];

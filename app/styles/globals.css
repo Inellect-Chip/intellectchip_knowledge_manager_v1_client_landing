@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+
+  --foreground: #171717;
+
+  --primary-color: #155dfc;
+  --primary-foreground-color: #030f29;
+
+  --secondary-color: #eff4ff;
+  --secondary-foreground-color: #6d7a98;
+
+  --hover-color: #d4e2ff;
+
+  --mute-foreground-color: rgb(223, 223, 223);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-poppins: var(--font-poppins);
+
+  --color-primary: var(--primary-color);
+  --color-primary-foreground: var(--primary-foreground-color);
+
+  --color-secondary: var(--secondary-color);
+  --color-secondary-foreground: var(--secondary-foreground-color);
+
+  --color-hover: var(--hover-color);
+
+  --color-mute-foreground: var(--mute-foreground-color);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+.container {
+  @apply max-w-[1400px] w-10/12 mx-auto;
+}
+
+/* Custom Scrollbar - Nearly Invisible */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.05); /* Very subtle */
+  border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--hover-color); /* Shows up on hover */
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.05) transparent;
+}
