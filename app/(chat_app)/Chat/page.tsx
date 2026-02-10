@@ -1,29 +1,35 @@
-import React from 'react';
+"use client";
 
-const ChatPage = () => {
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+const ChatRedirect = () => {
+    const router = useRouter();
+
+    useEffect(() => {
+        // Generate a 16-digit random numeric ID
+        const generateId = () => {
+            let id = '';
+            for (let i = 0; i < 16; i++) {
+                id += Math.floor(Math.random() * 10).toString();
+            }
+            return id;
+        };
+
+        const newId = generateId();
+        router.replace(`/Chat/${newId}`);
+    }, [router]);
+
     return (
-        <div className="p-8 h-full flex flex-col gap-6">
-            <header>
-                <h1 className="text-3xl font-bold tracking-tight text-foreground">
-                    Chat Dashboard
-                </h1>
-                <p className="text-secondary-foreground mt-2">
-                    Start a new conversation or continue your research.
+        <div className="h-screen w-full flex items-center justify-center bg-background">
+            <div className="flex flex-col items-center gap-4">
+                <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
+                <p className="text-secondary-foreground animate-pulse text-sm font-medium">
+                    Initializing secure chat session...
                 </p>
-            </header>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 overflow-y-auto">
-                <div className="p-6 rounded-2xl border border-secondary/10 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-md transition-shadow">
-                    <h3 className="font-semibold text-lg">New Chat</h3>
-                    <p className="text-sm text-secondary-foreground mt-1">Start a fresh AI-powered analysis.</p>
-                </div>
-                <div className="p-6 rounded-2xl border border-secondary/10 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-md transition-shadow">
-                    <h3 className="font-semibold text-lg">Knowledge Base</h3>
-                    <p className="text-sm text-secondary-foreground mt-1">Explore your saved insights and documents.</p>
-                </div>
             </div>
         </div>
     );
 };
 
-export default ChatPage;
+export default ChatRedirect;

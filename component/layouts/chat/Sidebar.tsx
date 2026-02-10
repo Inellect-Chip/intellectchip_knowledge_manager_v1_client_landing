@@ -14,6 +14,7 @@ import {
 import { useUser, useClerk, SignOutButton } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
+import { mockChatHistory } from '@/component/data/mockChatData';
 
 const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
@@ -26,13 +27,6 @@ const Sidebar = () => {
         { name: 'New Chat', icon: MessageSquare, href: '/Chat' },
         { name: 'Knowledge', icon: BrainCircuit, href: '/knowledge' },
     ];
-
-    // Mock Chat History (20 items)
-    const mockChatHistory = Array.from({ length: 20 }, (_, i) => ({
-        id: i + 1,
-        title: `Research Analysis #${i + 1}`,
-        time: '2 hours ago'
-    }));
 
     return (
         <aside
@@ -89,7 +83,8 @@ const Sidebar = () => {
                     </div>
                 )}
                 {mockChatHistory.map((chat) => (
-                    <button
+                    <Link
+                        href={`/Chat/${chat.id}`}
                         key={chat.id}
                         className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all duration-200 group hover:bg-hover/30 cursor-pointer ${isCollapsed ? 'justify-center' : ''
                             }`}
@@ -101,7 +96,7 @@ const Sidebar = () => {
                                 </span>
                             </div>
                         )}
-                    </button>
+                    </Link>
                 ))}
             </div>
 
